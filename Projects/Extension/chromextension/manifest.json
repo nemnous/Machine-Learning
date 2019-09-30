@@ -1,0 +1,59 @@
+{
+  "manifest_version": 2,
+  "name": "Data Collection",
+  "description": "This extension is used for data collection.",
+  "version": "1.0",
+  "icons": {
+    "128": "firebase-logo.png"
+  },
+  "browser_action": {
+    "default_icon": "firebase-logo.png",
+    "default_popup": "credentials.html"
+  },
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "firebase-app.js",
+      "firebase-firestore.js",
+      "credentials.js",
+      "background.js"
+    ]
+    // "page": "background.html"
+  },
+  "permissions": [
+    "storage",
+    "identity",
+    "activeTab",
+    "background",
+    "tabs",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
+  "content_scripts":[
+		{
+			"matches":[
+				"<all_urls>"
+			],
+			"js":[ "firebase-app.js", "firebase-database.js", "firebase-firestore.js","credentials.js", "background.js"],
+			"run_at": "document_end"
+		}
+	],
+  
+  // 'self' Adding https://www.gstatic.com/ to the external scripts authorized domains so we can import the firebase JS SDK and access the Realtime Database as well as Firebase Storage.
+  "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'"
+  // "oauth2": {
+  //   //project-1047082222814 TODO(DEVELOPER): Change the line below to the OAuth Client ID you created as described in https://developer.chrome.com/apps/app_identity#google
+  //   "client_id": "1047082222814-s1n7ffua3tcst36hs7hi1k3qj7jc0bma.apps.googleusercontent.com",
+  //   "scopes": [
+  //     "https://www.googleapis.com/auth/userinfo.email",
+  //     "https://www.googleapis.com/auth/userinfo.profile",
+  //     "openid",
+  //     "email",
+  //     "profile"
+  //   ]
+  // },
+  // TODO(DEVELOPER): Change the line below to your Chrome Extension's public key as described in https://developer.chrome.com/apps/app_identity#google
+  // "key": "AIzaSyAZ_c07e7AFWTL4yabPaBINFZ6LtmsOUyY"
+  // "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnF7RGLAxIon0/XeNZ4MLdP3DMkoORzEAKVg0sb89JpA/W2osTHr91Wqwdc9lW0mFcSpCYS9Y3e7cUMFo/M2ETASIuZncMiUzX2/0rrWtGQ3UuEj3KSe5PdaVZfisyJw/FebvHwirEWrhqcgzVUj9fL9YjE0G45d1zMKcc1umKvLqPyTznNuKBZ9GJREdGLRJCBmUgCkI8iwtwC+QZTUppmaD50/ksnEUXv+QkgGN07/KoNA5oAgo49Jf1XBoMv4QXtVZQlBYZl84zAsI82hb63a6Gu29U/4qMWDdI7+3Ne5TRvo6Zi3EI4M2NQNplJhik105qrz+eTLJJxvf4slrWwIDAQAB"
+
+}
