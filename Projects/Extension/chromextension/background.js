@@ -1,45 +1,50 @@
-// TODO(DEVELOPER): Change the values below using values from the initialization snippet: Firebase Console > Overview > Add Firebase to your web app.
-// Initialize Firebase
-// F:\Machine Learning\Projects\Extension\quickstart-js\auth\chromextension
-var config = {
-  apiKey: "AIzaSyDp8BOChOi_zaguCrDg8D_YP1NLHAlA_V0",
-  authDomain: "test-be1cc.firebaseapp.com",
-  databaseURL: "https://test-be1cc.firebaseio.com",
-  projectId: "test-be1cc",
-  storageBucket: "gs://test-be1cc.appspot.com",
-  messagingSenderId: "1047082222814",
-  appId: "1:1047082222814:web:4c0a9ff088bacca55eee4f",
-  measurementId: "G-0392Q4KEVX"
-};
 
-// var config = {
-//   apiKey: '<YOUR_API_KEY>',
-//   databaseURL: '<YOUR_DATABASE_URL>',
-//   storageBucket: '<YOUR_STORAGE_BUCKET_NAME>'
-// };
-// firebase.initializeApp(config);
+var user;
+chrome.identity.getProfileUserInfo(function(userInfo) {
+    user = userInfo;
+ });
 
-/**
- * initApp handles setting up the Firebase context and registering
- * callbacks for the auth status.
- *
- * The core initialization is in firebase.App - this is the glue class
- * which stores configuration. We provide an app name here to allow
- * distinguishing multiple app instances.
- *
- * This method also registers a listener with firebase.auth().onAuthStateChanged.
- * This listener is called when the user is signed in or out, and that
- * is where we update the UI.
- *
- * When signed in, we also authenticate to the Firebase Realtime Database.
-//  */
-// function initApp() {
-//   // Listen for auth state changes.
-//   firebase.auth().onAuthStateChanged(function(user) {
-//     console.log('User state change detected from the Background script of the Chrome Extension:', user);
+//  chrome.tabs.getSelected(null, function(tab) {
+//     //    var joinedMessage = messageToReturn + backgroundScriptMessage; 
+//        alert("Background script is sending a message to contentscript:'" + user.email +"'");
+//        chrome.tabs.sendMessage(tab.id, {message: user.email});
+//       });
+
+
+ chrome.extension.onRequest.addListener(function(request, sender)
+ {
+//   alert("Background script has received a message from contentscript:'" + request.message + "'");
+  returnMessage(request.message);
+ });
+  
+ function returnMessage(messageToReturn)
+ {
+  chrome.tabs.getSelected(null, function(tab) {
+//    var joinedMessage = messageToReturn + backgroundScriptMessage; 
+//    alert("Background script is sending a message to contentscript:'" + user.email +"'");
+   chrome.tabs.sendMessage(tab.id, {message: user.email});
+  });
+ }
+   
+ 
+
+
+//  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//     chrome.tabs.sendMessage(tabs[0].id, {"info": user});
+//     })
+
+// chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//     chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
+//       console.log(response.farewell);
+//     });
 //   });
-// }
 
-// window.onload = function() {
-//   initApp();
-// };
+// setInterval( chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//     chrome.tabs.sendMessage(tabs[0].id, {"info": user}, function(response){});
+//     }), 10000);
+// chrome.tabs.sendMessage({"info": user});
+
+
+ chrome.storage.local.set({'storageObjectName': user}, function () {
+    /* optional callback */
+});
