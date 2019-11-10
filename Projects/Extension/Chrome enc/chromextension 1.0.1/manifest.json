@@ -1,0 +1,45 @@
+{
+  "manifest_version": 2,
+  "name": "Data Collection",
+  "description": "This extension is used for data collection.",
+  "version": "1.1",
+  "icons": {
+    "128": "src/images/firebase-logo.png"
+  },
+  "browser_action": {
+    "default_icon": "src/images/firebase-logo.png",
+    "default_popup": "src/scripts/popup/popup.html"
+  },
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "src/scripts/background/background.js",
+      "src/scripts/firebase/firebase-app.js",
+      "src/scripts/firebase/firebase-database.js"
+    ]
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "background",
+    "tabs",
+    "clipboardRead",
+    "clipboardWrite",
+    "identity",
+    "identity.email"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/scripts/firebase/firebase-app.js",
+        "src/scripts/firebase/firebase-database.js",
+        "src/scripts/firebase/firebase-firestore.js",
+        "src/scripts/content/credentials.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
+}

@@ -1,7 +1,0 @@
-www.quora.com
-stackoverflow.com
-www.reddit.com
-meta.stackoverflow.com
-www.codeproject.com
-groups.google.com
-programmersheaven.com
