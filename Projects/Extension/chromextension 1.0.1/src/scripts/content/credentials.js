@@ -118,7 +118,7 @@ function checkActivity(hostname) {
 setInterval(function() {
   if (toBeUpdated) {
       toBeUpdated = false;
-      writeUserData(bufferData);
+      // writeUserData(bufferData);
       bufferData = {};
       // clipboardText = "";
   }
@@ -201,3 +201,48 @@ document.addEventListener('paste', function(e) {
     };
     clipboardText = ""
 });
+
+
+
+
+
+var timeoutID;
+var userActive;
+
+function setup() {
+    this.addEventListener('mousemove', resetTimer, false);
+    this.addEventListener('mousedown', resetTimer, false);
+    this.addEventListener('keypress', resetTimer, false);
+    this.addEventListener('scroll', resetTimer, false);
+    this.addEventListener('wheel', resetTimer, false);
+    this.addEventListener('touchmove', resetTimer, false);
+    this.addEventListener('pointermove', resetTimer, false);
+
+    startTimer();
+}
+
+setup();
+
+function startTimer() {
+    timeoutID = window.setTimeout(goInactive, 5000);
+    console.log("start timer" + timeoutID);
+}
+
+function resetTimer(e) {
+  console.log("reset TImer");
+  window.clearTimeout(timeoutID);
+    goActive();
+}
+
+function goInactive() {
+    console.log("Go inactive");
+    // chrome.runtime.sendMessage({ userActive: false });
+    userActive = false;
+}
+
+function goActive() {
+    console.log("GO active")
+    // chrome.runtime.sendMessage({ userActive: true });
+    userActive = true;
+    startTimer();
+}
