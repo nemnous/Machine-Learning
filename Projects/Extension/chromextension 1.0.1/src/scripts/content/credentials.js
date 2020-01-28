@@ -42,7 +42,7 @@ chrome.runtime.onMessage.addListener(
 function writeUserData(bufferData) {
   userid = userEmail.split("@")[0];
   userid = userid.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '_');
-  firebase.database().ref('users/').child(userid).update(bufferData);
+  firebase.database().ref('users/').child(userid).child('keystroke').update(bufferData);
   toBeUpdated = false;
 }
 
@@ -118,7 +118,7 @@ function checkActivity(hostname) {
 setInterval(function() {
   if (toBeUpdated) {
       toBeUpdated = false;
-      // writeUserData(bufferData);
+      writeUserData(bufferData);
       bufferData = {};
       // clipboardText = "";
   }
@@ -207,8 +207,10 @@ document.addEventListener('paste', function(e) {
 
 
 var timeoutID;
-var userActive;
-
+var userActive = false;
+var TotalTimeSpent = new Date().getTime() - new Date().getTime();
+var currentTime = new Date().getTime();
+var startTime;
 function setup() {
     this.addEventListener('mousemove', resetTimer, false);
     this.addEventListener('mousedown', resetTimer, false);
@@ -217,7 +219,6 @@ function setup() {
     this.addEventListener('wheel', resetTimer, false);
     this.addEventListener('touchmove', resetTimer, false);
     this.addEventListener('pointermove', resetTimer, false);
-
     startTimer();
 }
 
@@ -225,16 +226,37 @@ setup();
 
 function startTimer() {
     timeoutID = window.setTimeout(goInactive, 5000);
-    console.log("start timer" + timeoutID);
+    // console.log("start timer" + timeoutID);
 }
 
 function resetTimer(e) {
-  console.log("reset TImer");
+  // console.log("reset TImer");
   window.clearTimeout(timeoutID);
-    goActive();
+  goActive();
+}
+// while(!userActive) {
+//   currentTime = new Date().getTime();
+
+setInterval(function() {
+  if(!userActive) {
+    currentTime = new Date().getTime();
+  }
+}, 1000)
+// }
+function printTime(time) {
+  var days = Math.floor(time / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((time % (1000 * 60)) / 1000);
+  Stringtime = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+  console.log(Stringtime);
+  return Stringtime;
 }
 
+
 function goInactive() {
+    TotalTimeSpent = TotalTimeSpent + (new Date().getTime() - currentTime);
+    printTime(TotalTimeSpent);
     console.log("Go inactive");
     // chrome.runtime.sendMessage({ userActive: false });
     userActive = false;
@@ -246,3 +268,45 @@ function goActive() {
     userActive = true;
     startTimer();
 }
+
+
+window.onload = function() {
+  this.startTime = new this.Date().getTime();
+  this.currentTime = new this.Date().getTime();
+}
+
+// key = "test"
+// value= 123
+// chrome.storage.sync.set({key: value}, function() {
+//   console.log('Value is set to ' + value);
+// });
+
+// chrome.storage.sync.get(['key'], function(result) {
+//   console.log('Value currently is ' + result.key);
+// });
+
+window.onbeforeunload = function() {
+  this.uploadTime();
+  return "Confirm";
+};
+
+
+
+function uploadTime(){
+  userid = userEmail.split("@")[0];
+  userid = userid.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '_');
+  let url = getUrl();
+  var timeSpent = { }
+  timeSpent[(new Date).getTime()] = {
+    "url":url,
+    "active Time": printTime(TotalTimeSpent),
+    "Total Time" : printTime(new Date().getTime() - startTime)
+  };
+
+  console.log(userid, timeSpent);
+  firebase.database().ref('users/').child(userid).child("DwellTime").update(timeSpent);
+  return timeSpent;
+}
+
+
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TimeYourWeb</title>
+  <script src="/models/Store.js"></script>
+  <script src="/tmp/Config.js"></script>
+  <script src="/models/StoreKeeper.js"></script>
+  <script src="dev-info.js"></script>
+<style>
+  .info{
+    font-weight: bold;
+  }
+  .date{
+    width: 25ex;
+    display: inline-block;
+  }
+  .duration{
+    width: 8ex;
+    display: inline-block;
+  }
+  #activeTicksList, #idleTicksList{
+    white-space: nowrap;
+  }
+</style>
+
+</head>
+
+<body>
+<h3> User "default" </h3>
+
+
+<ul>
+  <li>Flow
+    <ul>
+      <li>Size: <span class="info" id="flowSize"></span> kB<br></li>
+      <li>Elements: <span class="info" id="flowElemNum"></span><br></li>
+    </ul>
+  </li>
+  <li>idUrl Library
+    <ul>
+      <li>Size: <span class="info" id="idUrlLibSize"></span> kB<br></li>
+      <li>Elements: <span class="info" id="idUrlLibElemNum"></span><br></li>
+    </ul>
+  </li>
+  <li>urlId Library
+    <ul>
+      <li>Size: <span class="info" id="urlIdLibSize"></span> kB<br></li>
+      <li>Elements: <span class="info" id="urlIdLibElemNum"></span><br></li>
+    </ul>
+  </li>
+</ul>
+Total Size: <span class="info" id="totalSize"></span> kB<br>
+Total Size: <span class="info" id="totalSizeMb"></span> MB<br>
+
+Day List: <ol class="info" id="dayList"></ol><br><br>
+
+</body>
+
+</html>

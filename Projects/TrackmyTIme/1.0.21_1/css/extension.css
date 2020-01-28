@@ -1,0 +1,177 @@
+html, body {
+    height: 550px;
+    width: 600px;
+    min-width: 600px;
+    margin: 0;
+    padding: 0;
+}
+
+#extension {
+    min-width: 600px;
+    border-width: 0;
+    padding: 0;
+    display: none;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    height: 100%;
+}
+
+#extension .brand {
+    display: list-item;
+    position: relative;
+    top: 1px;
+    float: left;
+    font-size: 1.2em;
+    line-height: 1.2em;
+    padding: .1em .5em;
+}
+
+/* --- TAB STUBS --- */
+#extension .stubs {
+    font-size: 1.3em;
+    border-radius: 0;
+    border-width: 0 0 1px 0 ;
+    background-color: transparent;
+    box-sizing: border-box;
+    width: 100%;
+    flex-shrink: 1;
+}
+
+#extension #tabs-stubs li > a {
+    padding: .2em .6em;
+}
+
+#extension #tabs-stubs button {
+    padding: .1em .2em;
+}
+
+/* --- TAB PANEL --- */
+#extension .tab {
+    padding: .2em .4em;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-basis: 150px;
+    flex-grow: 1;
+
+    display: flex;
+    background-color: rgba(255, 255, 189, 0.1);
+
+}
+
+#extension .tab .dashboard {
+    flex-shrink: 1;
+    margin-bottom: 3px;
+}
+
+#extension .tab .ui-button {
+    padding: .2em .4em;
+    font-size: 1.2em;
+}
+#extension .ui-button-text {
+    padding: 1px ;
+}
+
+#extension .stopped {
+    background-color: #fffd00;
+    padding-right: 4px;
+    text-align: right;
+    height: 18px;
+    line-height: 18px;
+    border-bottom: 1px solid #555555;
+    font-weight: 700;
+
+}
+
+/*------------------------------------*/
+#flashes {
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    padding: 5px 20px 0 10px;
+    background-color: yellow;
+    border: 1px solid rgb(238, 180, 32);;
+}
+
+#ui-datepicker-div {
+    font-size: 91%;
+}
+
+#ui-datepicker-div .ui-datepicker-week-col {
+    padding-right: 9px !important;
+    text-align: right;
+    border-bottom: 1px solid rgb(255, 255, 250) !important;
+}
+
+#ui-datepicker-div .ui-state-active {
+    border-color: rgb(69, 69, 69) !important;
+}
+
+.tyw-extension {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.tyw-extension .header .line {
+    height: 38px;
+    padding: 0px 5px 0px 5px;
+}
+
+.tyw-extension .header .line > .btn-group,
+.tyw-extension .header .line > .btn {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.tyw-extension .header .btn .glyphicon {
+    font-size: 17px;
+    margin-left: -3px;
+}
+
+.tyw-extension .header .btn .fa {
+    font-size: 19px;
+    margin-left: -3px;
+}
+
+.tyw-extension .header .btn.square,
+.tyw-extension .header .btn.square {
+    height: 30px;
+    width: 30px;
+}
+
+#calendarBtn {
+    margin-left: 0px;
+}
+
+#calendarInput {
+    z-index: 3;
+}
+
+/*
+-------------------------------------------
+*/
+
+.spinner-wrapper {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    text-align: center;
+    font-size: 100px;
+    display: table-cell;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    margin-top: -0.625em;
+    margin-left: -0.625em;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.hidden {
+    display: none;
+}

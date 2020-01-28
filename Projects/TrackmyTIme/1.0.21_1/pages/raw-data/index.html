@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TimeYourWeb | RAW Data</title>
+  <script src="/libs/js/renderjson.js"></script>
+  <script src="/libs/js/dexie.js"></script>
+  <script src="/models/events.js"></script>
+  <script src="/models/User.js"></script>
+  <script src="raw-data.js"></script>
+  <style>
+    body {
+      font-size: 1em;
+    }
+    #clearAllData{
+      position: absolute;
+      right: 0;
+      margin-right: 7px;
+    }
+    #clearRawData {
+      width: 90%;
+      height: 300px;
+      overflow: scroll;
+    }
+  </style>
+</head>
+
+<body>
+<button id="clearAllData">Clear</button>
+
+Domains:
+<pre id="domains"></pre>
+
+Pages:
+<pre id="pages"></pre>
+
+TotalFow:
+<pre id="totalFlow"></pre>
+
+ActiveFow:
+<pre id="activeFlow"></pre>
+
+</body>
+
+</html>

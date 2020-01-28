@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>SiteStat</title>
+  <!--styles start-->
+  <!--
+    <link rel="stylesheet" href="/libs/css/bootstrap.css">
+  -->
+  <link rel="stylesheet" href="/libs/css/jquery-ui.css">
+  <link rel="stylesheet" href="/libs/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/libs/css/hover.css" media="all">
+  <link rel="stylesheet" href="/css/extension.css">
+  <link rel="stylesheet" href="/css/summary.css">
+  <link rel="stylesheet" href="/css/flow.css">
+  <link rel="stylesheet" href="/css/stacked.css">
+  <link rel="stylesheet" href="/css/info.css">
+  <link rel="stylesheet" href="/css/like.css">
+  <link rel="stylesheet" href="/css/configuration.css">
+  <!--styles finish-->
+
+</head>
+<body>
+
+<div id="fb-root"></div>
+
+
+<div id="extension" style="width:100%; height:100%; position: absolute">
+  <div id="stopping-message" class="stopped hidden">You stopped time tracking. You can run it again through Config
+    tab.
+  </div>
+  <ul id="tabs-stubs" class="stubs">
+    <li class="brand">
+      <img src="/img/clock_48.png" style="
+      height: 24px; width: 24px; position: absolute; top: 0px; left: 3px; border-radius: 4px">
+    </li>
+    <li class="brand">S<small>ite</small>S<small>tat</small> </li>
+    <li data-tab-name="summary">
+      <a href="#tab-summary" title="Summary"><i class="fa fa-flip-vertical"><i
+          class="fa fa-signal fa-rotate-90"></i></i></a></li>
+    <li data-tab-name="flow">
+      <a href="#tab-flow" title="Flow"><i class="fa fa-tasks"></i></a></li>
+    <li data-tab-name="stacked">
+      <a href="#tab-stacked" title="Stacked"><i class="fa fa-bar-chart"></i></a></li>
+    <li style="float: right">
+      <button id="expand-btn" title="Open in new tab">
+        <i class="fa fa-expand"></i></button>
+    </li>
+    <!--
+                 <li style="float: right"><button id="sign-out-btn" style="padding: .1em .2em">
+                    <i class="fa fa-sign-out"></i></button></li>
+    -->
+
+    
+    <li data-tab-name="info" style="float: right"><a href="views/info.html" title="Info">
+      <i class="fa fa-question-circle"></i></a></li>
+    <li data-tab-name="configuration" style="float: right"><a href="#tab-configuration" title="Config">
+      <i class="fa fa-cog"></i></a></li>
+  </ul>
+
+
+  <!-- SUMMARY sub menu -->
+  <div id="tab-summary" class="tab" style="position: relative;width:100%;">
+    <div class="dashboard">
+      <input type="hidden" id="summary-calendar">
+      <button id="summary-calendar-btn" style="display: inline-block">
+        <i class="fa fa-calendar"></i>
+      </button>
+      <div id="summary-periods" class="inline-block">
+        <input type="radio" name="summary-periods" id="summary-period-day"><label
+          for="summary-period-day">Day</label>
+        <input type="radio" name="summary-periods" id="summary-period-week"><label
+          for="summary-period-week">Week</label>
+        <input type="radio" name="summary-periods" id="summary-period-month"><label
+          for="summary-period-month">Month</label>
+      </div>
+
+      <button id="summary-csv-download-btn" style="display: inline-block" title="Download as CSV">
+        <i class="fa fa-file-text-o"></i>
+      </button>
+      <button style="display: inline-block" title="Upload">
+        <i class="fa fa-cloud-upload"></i>
+      </button>
+
+    </div>
+    <div id="summary-content" class="content"></div>
+  </div>
+
+  <!------------------------- FLOW TAB --------------------------->
+  <div id="tab-flow" class="tab">
+    <div class="dashboard">
+      <input type="hidden" id="flow-calendar">
+      <button id="flow-calendar-btn" style="display: inline-block">
+        <i class="fa fa-calendar"></i>
+      </button>
+      <div id="flow-periods" style="display: none">
+        <input type="radio" name="flow-periods" id="flow-period-day"><label for="flow-period-day">Day</label>
+        <input type="radio" name="flow-periods" id="flow-period-week"><label for="flow-period-week">Week</label>
+        <input type="radio" name="flow-periods" id="flow-period-month"><label
+          for="flow-period-month">Month</label>
+      </div>
+      <div id="flow-types" class="inline-block">
+        <input type="radio" name="flow-types" id="flow-types-total"><label for="flow-types-total">Total</label>
+        <input type="radio" name="flow-types" id="flow-types-active"><label for="flow-types-active">Active</label>
+      </div>
+      <button id="flow-csv-download-btn" style="display: inline-block" title="Download as CSV">
+        <i class="fa fa-file-text-o"></i>
+      </button>
+
+    </div>
+    <div id="flow-content" class="content"></div>
+
+  </div>
+
+  <!------------------------- STACKED TAB --------------------------->
+  <div id="tab-stacked" class="tab">
+    <div class="dashboard">
+      <input type="hidden" id="stacked-calendar">
+      <button id="stacked-calendar-btn" style="display: inline-block">
+        <i class="fa fa-calendar"></i>
+      </button>
+      <div id="stacked-types" class="inline-block">
+        <input type="radio" name="stacked-types" id="stacked-types-total"><label for="stacked-types-total">Total</label>
+        <input type="radio" name="stacked-types" id="stacked-types-active"><label
+          for="stacked-types-active">Active</label>
+      </div>
+
+    </div>
+    <div id="stacked-content" class="content"></div>
+
+  </div>
+
+  <!-------------------------- CONFIGURATION TAB -------------------------->
+  <div id="tab-configuration">
+
+    <div class="config-block">
+      <b>Tracking time</b><br>
+      <div id="configuration-tracking" class="inline-block">
+        <input type="radio" name="configuration-tracking" id="configuration-tracking-start"><label
+          for="configuration-tracking-start">Start </label>
+        <input type="radio" name="configuration-tracking" id="configuration-tracking-stop"><label
+          for="configuration-tracking-stop">Stop </label>
+      </div>
+    </div>
+    <hr>
+    <div class="config-block">
+      <b>The first day of week</b><br>
+      <div id="firstWeekDayFlash"></div>
+      <div id="week-start-selector" class="inline-block">
+        <input type="radio" name="configuration-week-start-day" id="configuration-week-start-day-6"><label
+          for="configuration-week-start-day-6">Saturday </label>
+        <input type="radio" name="configuration-week-start-day" id="configuration-week-start-day-0"><label
+          for="configuration-week-start-day-0">Sunday </label>
+        <input type="radio" name="configuration-week-start-day" id="configuration-week-start-day-1"><label
+          for="configuration-week-start-day-1">Monday </label>
+      </div>
+    </div>
+    <hr>
+    <div class="config-block">
+      <b>Ignoring rules</b><br>
+
+      <small>Time spent on sites with next prefixes won't be tracked. See more on <b>Info Tab</b>.</small>
+      <div id="ignoringRuleFlash"></div>
+      <div class="input-group">
+        <input type="text" class="form-control" aria-label="..." id="ignoringRule">
+        <button id="addIgnoringRule">Add ignoring rule</button>
+      </div>
+      <ul id="ignoringList">
+      </ul>
+    </div>
+
+  </div>
+
+<!--scripts start-->
+<script src="/libs/js/jquery.js"></script>
+<script src="/libs/js/jquery-ui.js"></script>
+<script src="/libs/js/jquery.loadTemplate-1.5.0.js"></script>
+<script src="/libs/js/jquery.weekpicker.js"></script>
+<script src="/libs/js/moment-with-locales.js"></script>
+<script src="/libs/js/d3.min.js"></script>
+<script src="/libs/js/dexie.js"></script>
+
+<script src="/pages_helpers/flashMessage.js"></script>
+<script src="/models/events.js"></script>
+<script src="/models/User.js"></script>
+<script src="/models/charts/Chart.js"></script>
+<script src="/models/charts/SummaryChart.js"></script>
+<script src="/models/charts/FlowChart.js"></script>
+<script src="/models/charts/StackedChart.js"></script>
+<script src="/models/charts/Charts.js"></script>
+<script src="/models/Menu.js"></script>
+<script src="/models/Configuration.js"></script>
+<script src="/extension.js"></script>
+
+<script src="/models/socialSharing.js"></script>
+<!--scripts finish-->
+</body>
+</html>

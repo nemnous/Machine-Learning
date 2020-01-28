@@ -17,6 +17,7 @@
       ]
     },
     "permissions": [
+
       "topSites",
       "storage",
       "activeTab",
@@ -28,8 +29,7 @@
       "identity.email",
       "idle",
       "unlimitedStorage",
-      "http://*/*",
-      "https://*/*"
+      "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
       
     ],
     "offline_enabled": true,

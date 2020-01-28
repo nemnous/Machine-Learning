@@ -1,0 +1,44 @@
+
+
+.tab-info,
+.tyw-extension .config {
+    min-height: 100px;
+    flex: 10 1 135px;
+    margin: 0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.ui-tabs-panel.tab-info {
+    padding-left: 1em ;
+    padding-top: 0 ;
+}
+
+
+.tab-info .p,
+.tyw-extension .config .p {
+    padding: 10px 0px 0px 0px;
+    text-align: justify;
+    max-width: 560px;
+}
+
+.tab-info ul,
+.tyw-extension .config ul {
+    list-style-type: square
+}
+
+.tab-info h3,
+.tyw-extension .config h3 {
+    margin: 0px;
+    padding: 10px 0px 5px 10px;
+}
+
+#info-versions td {
+    vertical-align: top;
+}
+
+#info-versions td:first-child {
+    width: 50px;
+}

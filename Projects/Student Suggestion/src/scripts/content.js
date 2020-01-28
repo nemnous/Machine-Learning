@@ -14,6 +14,8 @@
 //     });
 // }
 // getTopSites(createMenu);
+
+
 function getUrl() {
     let url = window.location.href;
     return url;
@@ -68,7 +70,7 @@ chrome.storage.local.get('url', function(result) {
     chrome.storage.local.set({url: result.url});
   });
 
-//   chrome.storage.local.set({url: {}});
+  // chrome.storage.local.set({url: {}});
 
   chrome.storage.local.get('url', function(result) {
     //data.visited will be in the result object for a specific key. You can change data.visited 

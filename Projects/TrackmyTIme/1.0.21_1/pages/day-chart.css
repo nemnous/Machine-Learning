@@ -1,0 +1,226 @@
+html, body{
+  height: 550px;
+  width: 550px
+}
+
+.tyw-extension {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tyw-extension .header {
+  flex: 0 1 75px;
+}
+
+.tyw-extension .header .line{
+  height: 35px;
+  padding: 0px 5px 0px 5px;
+}
+
+.tyw-extension .header .brand {
+  font-size: 18px;
+  line-height: 20px;
+  float: left;
+  padding: 9px 5px 0px 5px;
+}
+
+.tyw-extension .header .btn-group {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.tyw-extension .header .btn .glyphicon {
+  font-size: 17px;
+  margin-left: -3px;
+}
+.tyw-extension .header .btn .fa {
+  font-size: 19px;
+  margin-left: -3px;
+}
+.tyw-extension .header .btn.square {
+  height: 30px;
+  width: 30px;
+  margin-top: 5px;
+  margin-left: 5px
+}
+
+#calendarBtn { margin-left: 0px; }
+#calendarInput { z-index: 3; }
+#content {
+  flex: 1000 1 auto;
+  position: relative;
+}
+
+#content .sort-btn {
+  cursor: pointer;
+}
+
+#content .sort-btn:hover {
+  text-decoration: underline;
+}
+
+#chart-elem {
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+  height: 100%;
+  position: absolute;
+}
+
+.summary {
+  position: absolute;
+  min-height: 20px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid rgb(238, 180, 32);
+  min-width: 510px;
+  color: rgb(56, 56, 56);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.summary .head {
+  background-color: #ffe38f/*rgb(254, 238, 189)*/;
+  border-bottom: 1px solid rgb(238, 180, 32);
+  flex: 0 1 60px;
+}
+.summary .head .line {
+  display: flex;
+  height: 30px;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 28px;
+  text-align: left;
+}
+.summary .head .line .btn {
+  height: 25px;
+  width: 25px;
+  /*top: 3px;*/
+}
+.summary .head .line .btn.right {
+  float: right;
+  margin-right:3px;
+  margin-top:3px
+}
+.summary .head .line .btn .ui-icon { top: 11px; left: 12px; }
+
+.summary .head .line .flex{
+  flex: 10 1 auto;
+  position: relative;
+  padding-left: 3px;
+
+}
+.summary .head .line .observation{
+  flex: 0 1 140px;
+  border-left: 1px solid rgb(238, 180, 32);
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+.summary .head .line .pcnt,
+.summary .head .line .time {
+  padding-left: 5px;
+  flex: 0 1 70px;
+  border-left: 1px solid rgb(238, 180, 32);
+  border-top: 1px solid rgb(238, 180, 32);
+  box-sizing: border-box;
+
+}
+.summary .head .line .time{
+  flex: 0 1 70px;
+}
+
+
+.summary .body {
+  min-height: 100px;
+  height: 50%;
+  overflow-y: auto;
+  flex: 10 1 135px;
+}
+.summary .body {
+  min-height: 100px;
+  height: 50%;
+  overflow-y: auto;
+  flex: 10 1 135px;
+}
+.summary .body .day-font {
+  font-size: 130%;
+/*
+  font-weight: 900;
+*/
+}
+.summary .body .second-font {
+  font-size: 80%;
+  color: #888;
+}
+
+.summary .body .page {
+  display: flex;
+  background-color: rgb(254, 238, 189);
+  margin-bottom: 1px;
+  height: 28px;
+  font-size: 16px;
+}
+
+.summary .body .page.bold { font-weight: bold; }
+.summary .body .page:nth-child(2n) {
+  background-color: #FFF3CE;
+}
+.summary .body .page:hover{
+  background-color: #fff;
+  border-bottom: 1px solid #e7e7e7;;
+  border-top: 1px solid #e7e7e7;
+  font-weight: bold;
+}
+
+.summary .body .page .url {
+  flex: 10 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+
+}
+.summary .body .page .url a {
+  text-decoration: none;
+  color: rgb(56, 56, 56);
+  margin-left: 12px;
+}
+.summary .body .page .url a:hover {
+  text-decoration: underline;
+}
+.summary .body .page .url .bar {
+  position: absolute;
+  left: 0px;
+}
+.summary .body .page .url .bar.t{
+  background-color: #FFCC33;
+  height: 24px;
+  top: 2px;
+}
+.summary .body .page .url .bar.a{
+  background-color: #9999CC;
+  height: 20px;
+  top: 4px;
+}
+.summary .body .page .url .bar.u{
+  height: 28px;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.summary .body .duration {
+  text-align: right;
+  border-left: 1px solid rgb(238, 180, 32);
+  line-height: 28px;
+  padding-right: 3px;
+  box-sizing: border-box;
+  font-size: 11px;
+}
+.summary .body .duration.pcnt{ flex: 0 1 70px; padding-right: 10px;  border-left: 1px solid rgba(238, 180, 32, 0.5)}
+.summary .body .duration.time{ flex: 0 1 70px; }
+
+.summary span.grey  { color: #888 }

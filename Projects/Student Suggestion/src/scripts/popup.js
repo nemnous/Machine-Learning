@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
     tr = ""
     // obj = obj.sort()
+    // document.getElementById('tbody').innerHTML = "";
     for(var key in obj) {
             var val = obj[key];
             var date = new Date(parseInt(key, 10)*1);
@@ -30,14 +31,22 @@ document.addEventListener("DOMContentLoaded", function() {
             var mon = date.getMonth() + 1;
             var year = date.getFullYear();
             // Will display time in 10:30:23 format
-            var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) + " " + day + "-" + mon + "-" + year;
-            tr += "<td style = 'width:200px'>" + formattedTime + "</td>" + "<td style = 'width:380px'>" + val + "</td></tr>";
-            document.getElementById('tbody').innerHTML += tr;
+            var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2) + "\n" + day + "-" + mon + "-" + year;
+
+           
+            // tr += "<p style= 'width:10px'></p>"
+            tr += "<tr><td style = 'width: 100px'>" + formattedTime + "</td>" + "<td style = 'width: 150px; text-overflow: ellipsis'>" + val + "</td>" + "<td style = 'width:50px; text-align:right; padding-right:15px'><button class='btn' id = " + key + " onclick = 'deleteFunc(this.id)' >DEl</button></td></tr>";
+            
 
     }
+    document.getElementById('tbody').innerHTML = tr ;
 });
 });
 
+function deleteFunc(buttID) {
+
+  document.getElementById('h3id').innerHTML = buttID;
+}
 // for (var i = 0; i < Object.keys(obj).length; i++) {
 //     var tr = "<tr>";
 

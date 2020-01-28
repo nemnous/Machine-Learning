@@ -8,6 +8,7 @@ chrome.identity.getProfileUserInfo(function(userInfo) {
     user = userInfo;
 });
 
+// alert(user)
 
 /**
  * Message listener from the content script, which eventually fires the sendMessage.
@@ -29,3 +30,8 @@ function returnMessage(messageToReturn) {
         });
     });
 }
+
+
+// chrome.tabs.onUpdated.addListener(alert("HandleUpdate"));
+// chrome.tabs.onRemoved.addListener(alert("HandleRemove"));
+// chrome.tabs.onReplaced.addListener(alert("HandleReplace"));

@@ -1,0 +1,72 @@
+#tab-configuration{
+    font-size: 1.2em;
+    padding: .5em .5em .5em 1em;
+    line-height: 1.5;
+
+}
+
+#tab-configuration .ui-button {
+    padding: .2em .4em;
+}
+
+#tab-configuration .config-block {
+    padding: .2em  0;
+}
+
+.flash_message {
+    /*position: absolute;*/
+    z-index: 2;
+    padding: 2px 5px;
+    margin: 3px 0;
+    border-radius: 3px;
+    background-color: #ffe38f; /*rgb(254, 238, 189)*/;
+    border: 1px solid rgb(238, 180, 32);
+}
+
+
+#ignoringRule {
+    padding: .2em .4em;
+}
+
+#ignoringList {
+    padding-left: 0px;
+    margin-top: 4px;
+    max-height: 155px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+#ignoringList li {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 25px;
+}
+
+#ignoringList li:hover {
+    background-color: #ffe38f;
+}
+
+#ignoringList li .rule {
+    flex: 100 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+}
+
+#ignoringList li:last-child .rule {
+    border-bottom-width: 0;
+}
+
+#ignoringList li .btn {
+    flex: 0 0 68px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 0px;
+    font-size: .5em;
+}

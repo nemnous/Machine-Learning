@@ -1,0 +1,346 @@
+#summary-content {
+    flex-grow: 1;
+    flex-direction: column;
+    position: relative;
+}
+
+#summary-chart {
+    min-height: 20px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid rgb(238, 180, 32);
+    min-width: 510px;
+    color: rgb(56, 56, 56);
+
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    border-radius: 4px;
+}
+
+#summary-chart .sort-btn {
+    cursor: pointer;
+    color: #7a7a7a
+}
+
+#summary-chart .sort-btn.active {
+    color: rgb(32, 32, 32)
+}
+
+#summary-chart .sort-btn:hover {
+    color: #000000
+}
+
+#summary-chart .spinner {
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    margin-left: -50px;
+    margin-top: -50px;
+}
+
+#summary-content .head {
+    background-color: #ffe38f; /*rgb(254, 238, 189)*/;
+    border-bottom: 1px solid rgb(238, 180, 32);
+    flex: 0 1 60px;
+    z-index: 4;
+    /*overflow-y: scroll;*/
+    /*scrollbar-arrow-color: rgb(238, 180, 32);*/
+    /*scrollbar-base-color: rgb(238, 180, 32);*/
+}
+
+#summary-content .head .center {
+    text-align: center;
+}
+
+#summary-content .head .line {
+    display: flex;
+    height: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 28px;
+    text-align: left;
+}
+
+#summary-content .head .line .btn {
+    height: 25px;
+    width: 25px;
+    /*top: 3px;*/
+}
+
+#summary-content .head .line .btn.right {
+    float: right;
+    margin-right: 3px;
+    margin-top: 3px
+}
+
+#summary-content .head .line .btn .ui-icon {
+    top: 11px;
+    left: 12px;
+}
+
+#summary-content .head .line .period {
+    flex: 10 1 auto;
+    position: relative;
+    padding-left: 3px;
+}
+
+#summary-content .head .line .observation {
+    flex: 0 1 100px;
+    border-left: 1px solid rgb(238, 180, 32);
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+#summary-content .head .line .observation.t {
+    background-color: #FFCC33;
+}
+
+#summary-content .head .line .observation.s {
+    background-color: #9999CC;
+}
+
+#summary-content .head .line .observation.pages {
+    flex: 0 1 55px;
+    padding: 0;
+    text-align: center;
+}
+#summary-content .head .line .observation.views{
+    flex: 0 1 40px;
+    overflow: hidden;
+    text-align: center;
+    padding: 0;
+}
+
+#summary-content .head .line .pcnt,
+#summary-content .head .line .time {
+    padding-left: 5px;
+    flex: 0 1 45px;
+    border-left: 1px solid rgb(238, 180, 32);
+    border-top: 1px solid rgb(238, 180, 32);
+    box-sizing: border-box;
+}
+
+#summary-content .head .line .time {
+    flex: 0 1 55px;
+}
+
+#summary-content .body {
+    min-height: 100px;
+    overflow-y: scroll;
+    flex: 10 1 135px;
+}
+
+#summary-content .body .day-font {
+    font-size: 130%;
+    /*
+      font-weight: 900;
+    */
+}
+
+#summary-content .body .second-font {
+    font-size: 80%;
+    color: #888;
+}
+
+#summary-content .body .line {
+    display: flex;
+    background-color: rgba(254, 238, 189, 0.9);
+    margin-bottom: 1px;
+    height: 28px;
+    font-size: 16px;
+}
+
+
+
+#summary-content .body .line.domain {
+    border-top: 1px solid rgb(238, 180, 32);
+}
+
+#summary-content .body .line.domain:first-child {
+    border-top: none;
+}
+#summary-content .body .line.page {
+    background-color: rgba(255, 238, 188, 0.25);
+}
+
+#summary-content .body .line.hidden {
+    display: none;
+}
+
+
+#summary-content .body .line .check-opened {
+    line-height: 28px;
+    padding-left: 7px;
+    cursor: pointer;
+    flex-basis: 12px;
+    border-right: 1px solid #999999;
+}
+
+#summary-content .body .line .check-opened:hover {
+    color: #000;
+}
+
+#summary-content .body .line.bold {
+    font-weight: bold;
+}
+
+/*#summary-content .body .line:nth-child(2n) {*/
+    /*background-color: #FFF3CE;*/
+/*}*/
+
+#summary-content .body .line:hover {
+    background-color: #fff;
+    border-bottom: 1px solid #e7e7e7;;
+    border-top: 1px solid #e7e7e7;
+    color: #000;
+}
+
+#summary-content .body .line .url {
+    flex: 10 1 auto;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+#summary-content .body .line .favicon {
+    height: 18px;
+    width: 18px;
+    position: relative;
+    top: 4px;
+    margin-right: 5px;
+}
+
+#summary-content .body .line .url a {
+    text-decoration: none;
+    color: rgb(56, 56, 56);
+    /*margin-left: 12px;*/
+}
+
+/*#summary-content .body .line .url a:hover {
+  text-decoration: underline;
+}*/
+#summary-content .body .line .url .bar {
+    position: absolute;
+}
+
+#summary-content .body .line .url .bar.t {
+    background-color: #FFCC33;
+    height: 24px;
+    top: 2px;
+    right: 0px;
+}
+
+#summary-content .body .line .url .bar.a {
+    background-color: #9999CC;
+    height: 18px;
+    top: 5px;
+    right: 0px;
+
+}
+
+#summary-content .body .line .url .bar.u {
+    height: 28px;
+    line-height: 28px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+
+}
+
+#summary-content .body .duration {
+    text-align: right;
+    border-left: 1px solid rgb(238, 180, 32);
+    line-height: 28px;
+    padding-right: 3px;
+    box-sizing: border-box;
+    font-size: 11px;
+    overflow: hidden;
+}
+
+#summary-content .body .duration.pcnt {
+    flex: 0 1 45px;
+    padding-right: 3px;
+    border-left: 1px solid rgba(238, 180, 32, 0.5)
+}
+
+#summary-content .body .duration.time {
+    flex: 0 1 55px;
+}
+
+#summary-content .body .duration.views {
+    flex: 0 1 40px;
+}
+
+#summary-content span.grey {
+    color: #888
+}
+
+
+#summary-content .head .line .flags {
+    padding-left: 0px;
+}
+
+#total-time-flag,
+#active-time-flag,
+#max-active-flag{
+    text-align: right;
+    font-size: 10px;
+    font-weight: normal;
+    position: absolute;
+    border: 1px solid #cca22a;
+    background-color: rgb(238, 180, 32);
+    cursor: col-resize;
+    width: 20px;
+    height: 17px;
+    line-height: 17px;
+    top: -8px;
+    padding-right: 1px;
+    border-radius: 2px;
+    z-index: 6;
+    box-sizing: border-box;
+}
+
+#active-time-flag {
+    border-color:     #8888b6;
+    background-color: #9999CC;
+    top:12px;
+    z-index: 8;
+}
+
+#max-active-flag {
+    border: 1px dashed #8888b6;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    top:42px;
+    background: none;
+    cursor: default ;
+    z-index: 4;
+
+}
+
+.flagstaffs{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.flagstaff{
+    top: 0px;
+    position: absolute;
+    height: 100%;
+    z-index: 2;
+    width: 0px;
+    border-right: 1px solid #cca22a;
+    left: 20px;
+}
+
+.flagstaff.active{
+    border-right: 1px solid #8888b6;
+}
+
+.flagstaff.max-active{
+    border-right: 1px dashed #8888b6;
+}
+
